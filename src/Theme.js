@@ -19,6 +19,11 @@ const theme = createTheme({
 			fontSize: "medium",
 			color: grey[800]
 		},
+		h4: {
+			fontWeight: 600,
+			fontSize: "small",
+			color: grey[800]
+		},
 		subtitle1: {
 			fontSize: "small",
 			color: grey[700]

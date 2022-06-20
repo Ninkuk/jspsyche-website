@@ -28,21 +28,18 @@ const experimentsList = [
 		title: "FacesCateg",
 		description: "Our best experiment. It tests which of 10 facial parameters we are able to best distinguish. We have not yet developed the approprirate data analysis for the results."
 	},
-	{
-		title: "",
-		description: ""
-	}
 ]
 
 function StudentDashboard(props) {
 	return (
 		<Container>
-			<Typography variant="h3" textAlign={"center"} mt={10} fontWeight={600} gutterBottom>My
-				Experiments</Typography>
-			<Grid container>
-
-			</Grid>
-			<Grid container spacing={2}>
+			<Typography variant="h1" mt={10}>
+				My Experiments
+			</Typography>
+			<Typography variant="subtitle1">
+				Signed in as Ninad Kulkarni
+			</Typography>
+			<Grid container spacing={2} mt={1}>
 				{
 					experimentsList.map(exp => (
 						<Grid item xs={4}>

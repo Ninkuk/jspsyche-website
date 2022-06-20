@@ -16,7 +16,7 @@ import {
 import {AutoFixHigh, Edit} from "@mui/icons-material";
 
 
-function ExperimentCard(props) {
+function TemplateExperimentCard(props) {
 	return (
 		<Card variant="outlined" sx={{height: '100%', display: 'flex', flexDirection: 'column'}}>
 			<CardContent sx={{flex: 1}}>
@@ -33,9 +33,9 @@ function ExperimentCard(props) {
 				</Grid>
 			</CardContent>
 			<CardActions>
-				<Tooltip title="Edit">
+				<Tooltip title="Remix">
 					<IconButton>
-						<Edit/>
+						<AutoFixHigh/>
 					</IconButton>
 				</Tooltip>
 			</CardActions>
@@ -43,4 +43,4 @@ function ExperimentCard(props) {
 	);
 }
 
-export default ExperimentCard;
+export default TemplateExperimentCard;
