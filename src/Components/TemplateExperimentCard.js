@@ -1,19 +1,15 @@
-import React, {useState} from 'react';
-import {grey, purple, red} from '@mui/material/colors';
-import {styled} from "@mui/material/styles";
+import React from 'react';
+import {grey} from '@mui/material/colors';
 import {
 	Card,
-	CardActionArea,
 	CardActions,
 	CardContent,
-	Chip,
-	Grid, IconButton,
-	List,
-	ListItem,
-	Stack, Tooltip,
+	Chip, Grid, IconButton,
+	Tooltip,
 	Typography
 } from "@mui/material";
-import {AutoFixHigh, Edit} from "@mui/icons-material";
+import {AutoFixHigh} from "@mui/icons-material";
+import MemoryLimitsDialog from "../Experiments/MemoryLimits/MemoryLimitsDialog";
 
 
 function TemplateExperimentCard(props) {
@@ -28,13 +24,15 @@ function TemplateExperimentCard(props) {
 					{props.description}
 				</Typography>
 				<Grid container spacing={1}>
-					<Grid item><Chip label="Contextualizing" sx={{color: grey[500], fontSize: "x-small"}} variant="filled" size="small"/></Grid>
-					<Grid item><Chip label="Categorizing" sx={{color: grey[500], fontSize: "x-small"}} variant="filled" size="small"/></Grid>
+					<Grid item><Chip label="Contextualizing" sx={{color: grey[500], fontSize: "x-small"}}
+					                 variant="filled" size="small"/></Grid>
+					<Grid item><Chip label="Categorizing" sx={{color: grey[500], fontSize: "x-small"}} variant="filled"
+					                 size="small"/></Grid>
 				</Grid>
 			</CardContent>
 			<CardActions>
 				<Tooltip title="Remix">
-					<IconButton>
+					<IconButton onClick={() => props.dialog(true)}>
 						<AutoFixHigh/>
 					</IconButton>
 				</Tooltip>

@@ -8,6 +8,7 @@ import StudentDashboard from "./Pages/StudentDashboard";
 import NewExperiment from "./Pages/NewExperiment";
 import {ThemeProvider} from "@mui/material";
 import theme from "./Theme";
+import MemoryLimits from "./Experiments/MemoryLimits/MemoryLimits";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,9 +19,9 @@ root.render(
 					<Route path="/" element={<App/>}/>
 					<Route path="/student" element={<StudentDashboard/>}/>
 					<Route path="/new-experiment" element={<NewExperiment/>}/>
+					<Route path="/memory-limits" element={<MemoryLimits/>}/>
 				</Routes>
 			</BrowserRouter>
-
 		</ThemeProvider>
 	</React.StrictMode>
 );

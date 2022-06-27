@@ -28,8 +28,14 @@ function ExperimentCard(props) {
 					{props.description}
 				</Typography>
 				<Grid container spacing={1}>
-					<Grid item><Chip label="Contextualizing" sx={{color: grey[500], fontSize: "x-small"}} variant="filled" size="small"/></Grid>
-					<Grid item><Chip label="Categorizing" sx={{color: grey[500], fontSize: "x-small"}} variant="filled" size="small"/></Grid>
+					{
+						props.categories.map(category => (
+							<Grid item>
+								<Chip label={category} sx={{color: grey[500], fontSize: "x-small"}}
+								      variant="filled" size="small"/>
+							</Grid>
+						))
+					}
 				</Grid>
 			</CardContent>
 			<CardActions>

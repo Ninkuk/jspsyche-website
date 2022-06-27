@@ -1,44 +1,93 @@
-import React from 'react';
-import {Container, Fab, Grid, Typography} from "@mui/material";
+import React, {useState} from 'react';
+import {
+	Avatar,
+	Container,
+	Fab,
+	Grid,
+	IconButton,
+	ListItemIcon,
+	Menu,
+	MenuItem,
+	Tooltip,
+	Typography
+} from "@mui/material";
 import ExperimentCard from "../Components/ExperimentCard";
 import AddIcon from "@mui/icons-material/Add";
+import {AccountCircle, Logout, Settings} from "@mui/icons-material";
 
 const experimentsList = [
 	{
-		title: "AttentionSums",
-		description: "Compares your ability to attend to two tasks at the same time compared to doing them in succession"
+		title: "Experiment 1",
+		description: "Lorem ipsum",
+		categories: ["Categorization"]
 	},
 	{
-		title: "MemoryLimits",
-		description: "Tests your ability to remember 2, 3 or 4 objects"
-	},
-	{
-		title: "PeripheralVis_Workshop",
-		description: "Demonstrates that your peripheral vision has less acuity than your central vision"
-	},
-	{
-		title: "SaccadeTime_Workshop",
-		description: "Tests the time it take you to reorient your central vision to the periphery"
-	},
-	{
-		title: "TempImages4",
-		description: "Our most important template. It displays one image and then asks the subject to identify the image they saw from a set of 4. We have a variety of TempImages4 routines labelled Blocks, Learn, Retry, and Sort"
-	},
-	{
-		title: "FacesCateg",
-		description: "Our best experiment. It tests which of 10 facial parameters we are able to best distinguish. We have not yet developed the approprirate data analysis for the results."
+		title: "Experiment 2",
+		description: "Lorem ipsum",
+		categories: ["Categorization", "Contextualization"]
 	},
 ]
 
 function StudentDashboard(props) {
+	const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+	const menuOpen = Boolean(menuAnchorEl);
+	const handleMenuOpen = (event) => {
+		setMenuAnchorEl(event.currentTarget);
+	};
+	const handleMenuClose = () => {
+		setMenuAnchorEl(null);
+	};
+
 	return (
 		<Container>
-			<Typography variant="h1" mt={10}>
-				My Experiments
-			</Typography>
-			<Typography variant="subtitle1">
-				Signed in as Ninad Kulkarni
-			</Typography>
+			<Grid container mt={10} justifyContent={"space-between"}>
+				<Grid item>
+					<Typography variant="h1">
+						My Experiments
+					</Typography>
+				</Grid>
+				<Grid item>
+					<Tooltip title="Signed in as Ninad Kulkarni">
+						<IconButton id={"bruh"} onClick={handleMenuOpen}>
+							<Avatar variant="circular">NK</Avatar>
+						</IconButton>
+					</Tooltip>
+				</Grid>
+			</Grid>
+
+			<Menu open={menuOpen} anchorEl={menuAnchorEl} onClose={handleMenuClose}
+			      anchorOrigin={{
+				      vertical: 'bottom',
+				      horizontal: 'right',
+			      }}
+			      transformOrigin={{
+				      vertical: 'top',
+				      horizontal: 'right'
+			      }}
+			>
+				<MenuItem>
+					<ListItemIcon>
+						<AccountCircle fontSize="small"/>
+					</ListItemIcon>
+					Profile
+				</MenuItem>
+				<MenuItem>
+					<ListItemIcon>
+						<Settings fontSize="small"/>
+					</ListItemIcon>
+					Settings
+				</MenuItem>
+				<MenuItem>
+					<ListItemIcon>
+						<Logout fontSize="small"/>
+					</ListItemIcon>
+					Sign Out
+				</MenuItem>
+			</Menu>
+
+			{/*<Typography variant="subtitle1">*/}
+			{/*	Signed in as Ninad Kulkarni*/}
+			{/*</Typography>*/}
 			<Grid container spacing={2} mt={1}>
 				{
 					experimentsList.map(exp => (
@@ -47,6 +96,7 @@ function StudentDashboard(props) {
 								title={exp.title}
 								authorName="Ninad Kulkarni"
 								description={exp.description}
+								categories={exp.categories}
 							/>
 						</Grid>
 					))

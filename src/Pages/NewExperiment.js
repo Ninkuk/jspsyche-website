@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
 	Button,
 	Chip,
@@ -12,17 +12,20 @@ import {
 	TextField,
 	Typography
 } from "@mui/material";
-// import { ColorPalette } from 'mui-color';
+import {ColorPalette} from 'mui-color';
 import Search from "@mui/icons-material/Search";
 import {grey} from "@mui/material/colors";
 import ExperimentCard from "../Components/ExperimentCard";
 import TemplateExperimentCard from "../Components/TemplateExperimentCard";
 import {Upload} from "@mui/icons-material";
+import RemixDialog from "../Components/RemixDialog";
+import MemoryLimitsDialog from "../Experiments/MemoryLimits/MemoryLimitsDialog";
 
 const experimentsList = [
 	{
 		title: "AttentionSums",
-		description: "Compares your ability to attend to two tasks at the same time compared to doing them in succession"
+		description: "Compares your ability to attend to two tasks at the same time compared to doing them in succession",
+		dialog: <MemoryLimitsDialog/>
 	},
 	{
 		title: "MemoryLimits",
@@ -63,7 +66,17 @@ const palette = {
 };
 
 function NewExperiment(props) {
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
+
+	const [selectedCategories, setSelectedCategories] = useState(
+		[
+			"Contextualizing",
+			"Categorizing",
+			"Associating",
+			"Prioritizing",
+			"Analogizing",
+		]
+	);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -101,9 +114,9 @@ function NewExperiment(props) {
 				Experiment Type
 			</Typography>
 			<Stack direction="row" spacing={1} mt={1}>
-				<Chip label="Quantifiable" sx={{color: grey[500]}} variant="outlined" onClick={handleClickOpen} />
-				<Chip label="Analyze an Example" sx={{color: grey[500]}} variant="outlined" onClick={handleClickOpen} />
-				<Chip label="Visual Communication" sx={{color: grey[500]}} variant="outlined" onClick={handleClickOpen} />
+				<Chip label="Quantifiable" variant="filled" color={"primary"}/>
+				<Chip label="Analyze an Example" sx={{color: grey[500]}} variant="outlined"/>
+				<Chip label="Visual Communication" sx={{color: grey[500]}} variant="outlined"/>
 			</Stack>
 
 			{/*
@@ -117,11 +130,11 @@ function NewExperiment(props) {
 				Cognitive Functions
 			</Typography>
 			<Stack direction="row" spacing={1} mt={1}>
-				<Chip label="Contextualizing" sx={{color: grey[500]}} variant="outlined" onClick={handleClickOpen} />
-				<Chip label="Categorizing" sx={{color: grey[500]}} variant="outlined" onClick={handleClickOpen} />
-				<Chip label="Associating" sx={{color: grey[500]}} variant="outlined" onClick={handleClickOpen} />
-				<Chip label="Prioritizing" sx={{color: grey[500]}} variant="outlined" onClick={handleClickOpen} />
-				<Chip label="Analogizing" sx={{color: grey[500]}} variant="outlined" onClick={handleClickOpen} />
+				<Chip label="Contextualizing" variant="filled" color={"primary"}/>
+				<Chip label="Categorizing" variant="filled" color={"primary"}/>
+				<Chip label="Associating" sx={{color: grey[500]}} variant="outlined"/>
+				<Chip label="Prioritizing" sx={{color: grey[500]}} variant="outlined"/>
+				<Chip label="Analogizing" sx={{color: grey[500]}} variant="outlined"/>
 			</Stack>
 
 			{/*	cards grid */}
@@ -133,6 +146,7 @@ function NewExperiment(props) {
 								title={exp.title}
 								authorName="Ninad Kulkarni"
 								description={exp.description}
+								dialog={setOpen}
 							/>
 						</Grid>
 					))
@@ -140,22 +154,23 @@ function NewExperiment(props) {
 			</Grid>
 
 			<Dialog open={open} onClose={handleClose}>
-				<DialogTitle variant="h2">Create a new Experiment</DialogTitle>
-				<DialogContent>
-					<DialogContentText>
-						You can modify the following values:
-					</DialogContentText>
-					<Typography variant="h4" mt={2} gutterBottom>Images</Typography>
-					<Button variant={"outlined"} startIcon={<Upload/>}>Upload</Button>
-					<Typography variant="h4" mt={2} gutterBottom>Colors</Typography>
-					{/*<ColorPalette palette={palette} />*/}
-					<Typography variant="h4" mt={2} gutterBottom>Values</Typography>
+				{/*<DialogTitle variant="h2">Create a new Experiment</DialogTitle>*/}
+				{/*<DialogContent>*/}
+				{/*	<DialogContentText>*/}
+				{/*		You can modify the following values:*/}
+				{/*	</DialogContentText>*/}
+				{/*	<Typography variant="h4" mt={2} gutterBottom>Images</Typography>*/}
+				{/*	<Button variant={"outlined"} startIcon={<Upload/>}>Upload</Button>*/}
+				{/*	<Typography variant="h4" mt={2} gutterBottom>Colors</Typography>*/}
+				{/*	/!*<ColorPalette palette={palette}/>*!/*/}
+				{/*	<Typography variant="h4" mt={2} gutterBottom>Values</Typography>*/}
 
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={handleClose}>Create</Button>
-				</DialogActions>
+				{/*</DialogContent>*/}
+				{/*<DialogActions>*/}
+				{/*	<Button onClick={handleClose}>Cancel</Button>*/}
+				{/*	<Button onClick={handleClose}>Create</Button>*/}
+				{/*</DialogActions>*/}
+				<MemoryLimitsDialog/>
 			</Dialog>
 		</Container>
 	);
